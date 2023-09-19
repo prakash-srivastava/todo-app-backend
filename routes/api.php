@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\TodoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,8 +27,16 @@ Route::post('register', [AuthController::class, 'register']);
 
 Route::group(['middleware' => 'auth:api'], function(){
     Route::prefix('user')->controller(UserController::class)->group(function () {
-        Route::get('detail', [UserController::class, 'detail']);
-        Route::post('change-password', [UserController::class, 'changePassword']);
-        Route::post('update', [UserController::class, 'update']);
+        Route::get('detail', 'detail');
+        Route::post('change-password', 'changePassword');
+        Route::post('update', 'update');
+    });
+
+    Route::prefix('todo')->controller(TodoController::class)->group(function () {
+        Route::get('list', 'list');
+        Route::get('detail', 'detail');
+        Route::post('store', 'store');
+        Route::put('update', 'update');
+        Route::delete('destroy', 'destroy');
     });
 });

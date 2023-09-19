@@ -2,16 +2,14 @@
 
 namespace App\Repository\User;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Repository\User\UserRepositoryInterface;
 use Illuminate\Support\Facades\Hash;
 
 class UserRepository implements UserRepositoryInterface
 {
-    public function __construct(Controller $response, User $user)
+    public function __construct(User $user)
     {
-        $this->response = $response;
         $this->user = $user;
     }
 
